@@ -6,7 +6,7 @@
     <title>Открытое пространство "4 сезона"</title>
     <style>
         :root {
-            --bg-blur: 10px;
+            --bg-blur: 3px;
             --card-bg: rgba(255, 255, 255, 0.12);
             --card-border: rgba(255, 255, 255, 0.2);
             --text-color: #ffffff;
@@ -16,8 +16,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Профессиональные, чистые шрифты */
             font-family: "Inter", "Roboto", "-apple-system", BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -31,43 +32,60 @@
             position: relative;
         }
 
-        /* Задний фон с твоим размытым фото */
+        /* Задний фон */
         .parallax-bg {
             position: fixed;
             top: -10%;
             left: -10%;
             width: 120%;
             height: 120%;
-            /* Путь к твоей фотке учреждения */
             background: url('img/bg.jpg') no-repeat center/cover;
-            filter: blur(var(--bg-blur)) brightness(0.65);
+            filter: blur(var(--bg-blur)) brightness(0.5);
             z-index: -1;
             transform: translate3d(0, 0, 0);
             will-change: transform;
         }
 
-        /* Шапка с гербами (без рамок, крупнее) */
+        /* Верхняя правая шапка */
         header {
             width: 100%;
-            padding: 30px 50px 10px 50px;
+            padding: 30px 40px 10px 40px;
             display: flex;
             justify-content: flex-end;
         }
 
-        .crest-container {
+        .top-crests-container {
             display: flex;
-            gap: 25px; /* Больше расстояние между гербами */
+            gap: 24px;
+        }
+
+        .crest-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            max-width: 150px;
         }
 
-        .crest {
-            width: 70px; /* Увеличили размер */
-            height: 80px;
+        .crest-small {
+            width: 60px;
+            height: 70px;
             object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); /* Мягкая тень вместо обводки */
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+            margin-bottom: 8px;
         }
 
-        /* Главный блок */
+        .crest-subtext {
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Главный контент */
         main {
             flex-grow: 1;
             display: flex;
@@ -78,18 +96,42 @@
             text-align: center;
         }
 
+        .main-crest-container {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Центральный логотип */
+        .crest-main {
+            width: 460px; /* Увеличили размер на ПК для солидности */
+            height: auto;
+            max-height: 340px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .crest-main:hover {
+            transform: scale(1.02);
+        }
+
+        /* Главный заголовок */
         h1 {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             font-weight: 800;
             letter-spacing: -0.03em;
             text-transform: uppercase;
-            margin-bottom: 50px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 45px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
             max-width: 900px;
             line-height: 1.15;
         }
 
-        /* Четкая сетка: 3 колонки на ПК */
+        /* Сетка кнопок */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
@@ -101,8 +143,8 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 30px 20px;
@@ -115,46 +157,66 @@
             align-items: center;
             justify-content: center;
             transition: all 0.25s ease;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
             min-height: 100px;
         }
 
         .card:hover {
             background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.45);
             transform: translateY(-4px);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
 
-        /* Футер */
+        /* Подвал */
         footer {
             width: 100%;
             padding: 25px 20px;
             text-align: center;
-            background: rgba(7, 11, 21, 0.4);
-            backdrop-filter: blur(8px);
+            background: rgba(7, 11, 21, 0.6);
+            backdrop-filter: blur(12px);
             font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 0.03em;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        /* Адаптив под мобилки и планшеты */
+        /* Адаптивность */
         @media (max-width: 992px) {
             h1 { font-size: 2.5rem; }
-            /* На планшетах делаем 2 колонки (3 ряда по 2 кнопки) */
             .grid-container { grid-template-columns: repeat(2, 1fr); } 
             header { justify-content: center; padding: 20px; }
-            .crest { width: 60px; height: 70px; }
+            .crest-main { width: 340px; }
         }
 
         @media (max-width: 576px) {
-            h1 { font-size: 1.8rem; margin-bottom: 30px; }
-            /* На телефонах все в 1 колонку */
-            .grid-container { grid-template-columns: 1fr; gap: 16px; } 
-            .card { padding: 20px; min-height: 80px; font-size: 1rem; }
-            .crest { width: 50px; height: 60px; }
+            header { padding: 20px 10px 10px 10px; justify-content: center; }
+            .top-crests-container { gap: 20px; }
+            .crest-small { width: 50px; height: 60px; margin-bottom: 4px; }
+            .crest-subtext { font-size: 0.65rem; max-width: 110px; }
+
+            .crest-main { 
+                width: 85vw; 
+                max-height: 38vh; 
+            }
+
+            h1 { 
+                font-size: 1.7rem; 
+                margin-bottom: 35px; 
+            }
+
+            .grid-container { 
+                grid-template-columns: 1fr; 
+                gap: 12px; 
+                padding: 0 15px;
+            } 
+            
+            .card { 
+                padding: 18px 15px; 
+                min-height: 70px; 
+                font-size: 0.95rem; 
+            }
         }
     </style>
 </head>
@@ -163,23 +225,32 @@
     <div class="parallax-bg" id="bg"></div>
 
     <header>
-        <div class="crest-container">
-            <img src="img/crest1.png" alt="Герб 1" class="crest">
-            <img src="img/crest2.png" alt="Герб 2" class="crest">
-            <img src="img/crest3.png" alt="Герб 3" class="crest">
+        <div class="top-crests-container">
+            <div class="crest-item">
+                <img src="img/crest2.png" alt="Логотип ЦО" class="crest-small">
+                <div class="crest-subtext">Ефремовский областной центр образования</div>
+            </div>
+            <div class="crest-item">
+                <img src="img/crest3.png" alt="Герб Тульской области" class="crest-small">
+                <div class="crest-subtext">Министерство образования Тульской области</div>
+            </div>
         </div>
     </header>
 
     <main>
+        <div class="main-crest-container">
+            <img src="img/crest1.png" alt="Главный Логотип" class="crest-main">
+        </div>
+
         <h1>Открытое пространство<br>"4 сезона"</h1>
 
         <div class="grid-container">
-            <a href="#" class="card">ранний возраст</a>
-            <a href="#" class="card">дошкольный возраст</a>
-            <a href="#" class="card">младшие школьники</a>
-            <a href="#" class="card">мероприятия и конкурсы</a>
-            <a href="#" class="card">рекомендации педагогов</a>
-            <a href="#" class="card">отзывы и предложения</a>
+            <a href="early-age.html" class="card">Ранний возраст</a>
+            <a href="preschool.html" class="card">Дошкольный возраст</a>
+            <a href="schoolchildren.html" class="card">Младшие школьники</a>
+            <a href="events.html" class="card">Мероприятия и конкурсы</a>
+            <a href="recommendations.html" class="card">Рекомендации педагогов</a>
+            <a href="reviews.html" class="card">Отзывы и предложения</a>
         </div>
     </main>
 
@@ -190,8 +261,8 @@
     <script>
         const bg = document.getElementById('bg');
         window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * -15;
-            const y = (e.clientY / window.innerHeight) * -15;
+            const x = (e.clientX / window.innerWidth) * -12;
+            const y = (e.clientY / window.innerHeight) * -12;
             bg.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         });
     </script>

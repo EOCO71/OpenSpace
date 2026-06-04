@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ранний возраст - Открытое пространство "4 сезона"</title>
+    <style>
+        :root {
+            --bg-blur: 14px;
+            --card-bg: rgba(255, 255, 255, 0.12);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Inter", "Roboto", "-apple-system", BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Задний фон один в один */
+        .parallax-bg {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: url('img/bg.jpg') no-repeat center/cover;
+            filter: blur(var(--bg-blur)) brightness(0.5);
+            z-index: -1;
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
+        }
+
+        /* СТИЛЬНАЯ ПОЛОСКА-ШАПКА */
+        .top-navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Аккуратная кнопка Назад */
+        .back-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(-3px);
+        }
+
+        /* Основной контейнер под контент страницы */
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Стеклянное окно, куда ты будешь вставлять инфу страницы */
+        .content-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-box h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Подвал один в один */
+        footer {
+            width: 100%;
+            padding: 25px 20px;
+            text-align: center;
+            background: rgba(7, 11, 21, 0.6);
+            backdrop-filter: blur(12px);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Адаптивность для полосы и контента */
+        @media (max-width: 768px) {
+            .top-navbar { padding: 15px 20px; flex-direction: column; gap: 12px; text-align: center; }
+            .nav-title { font-size: 1.1rem; }
+            .content-box { padding: 25px 20px; }
+            .content-box h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-bg" id="bg"></div>
+
+    <div class="top-navbar">
+        <div class="nav-title">Открытое пространство "4 сезона"</div>
+        <a href="index.html" class="back-btn">← На главную</a>
+    </div>
+
+    <main>
+        <div class="content-box">
+            <h2>Дошкольный возраст</h2>
+            <p>Здесь будет находиться контент, методические материалы, расписание или любая другая информация, посвященная направлению "Дошкольный возраст".</p>
+        </div>
+    </main>
+
+    <footer>
+        ГОУ ТО "ЕФРЕМОВСКИЙ ОБЛАСТНОЙ ЦЕНТР ОБРАЗОВАНИЯ" &copy; 2026
+    </footer>
+
+    <script>
+        const bg = document.getElementById('bg');
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * -12;
+            const y = (e.clientY / window.innerHeight) * -12;
+            bg.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        });
+    </script>
+
+</body>
+</html>
